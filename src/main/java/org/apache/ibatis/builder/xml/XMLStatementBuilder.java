@@ -143,12 +143,13 @@ public class XMLStatementBuilder extends BaseBuilder {
     String keyColumn = nodeToHandle.getStringAttribute("keyColumn");
     boolean executeBefore = "BEFORE".equals(nodeToHandle.getStringAttribute("order", "AFTER"));
 
-    // defaults
+    // 是否可使用缓存, 当是SELECT 类型的SQL节点时可使用
     boolean useCache = false;
     boolean resultOrdered = false;
     KeyGenerator keyGenerator = NoKeyGenerator.INSTANCE;
     Integer fetchSize = null;
     Integer timeout = null;
+    // 是否刷新缓存,当不是 SELECT 类型的SQL节点时刷新
     boolean flushCache = false;
     String parameterMap = null;
     String resultMap = null;

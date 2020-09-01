@@ -284,9 +284,10 @@ public class MapperBuilderAssistant extends BaseBuilder {
         .resultSets(resultSets)
         .resultMaps(getStatementResultMaps(resultMap, resultType, id))
         .resultSetType(resultSetType)
+        // 当SQL节点类型非SELECT时, flushCacheRequired = true
         .flushCacheRequired(valueOrDefault(flushCache, !isSelect))
-        .useCache(valueOrDefault(useCache, isSelect))
-        .cache(currentCache);
+        .useCache(valueOrDefault(useCache, isSelect))// 当SQL节点类型为SELECT时, useCache = true
+        .cache(currentCache);// MappedStatement关联实例化好的Cache对象
 
     ParameterMap statementParameterMap = getStatementParameterMap(parameterMap, parameterType, id);
     if (statementParameterMap != null) {
