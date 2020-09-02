@@ -186,7 +186,7 @@ public class XMLStatementBuilder extends BaseBuilder {
     if (!this.configuration.hasStatement(id, false)) {
       return true;
     }
-    // skip this statement if there is a previous one with a not null databaseId
+    // 如果前一个语句的databaseId不为null，则跳过此语句
     MappedStatement previous = this.configuration.getMappedStatement(id, false); // issue #2
     return previous.getDatabaseId() == null;
   }

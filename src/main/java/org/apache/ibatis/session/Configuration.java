@@ -675,6 +675,7 @@ public class Configuration {
     } else {
       executor = new SimpleExecutor(this, transaction);
     }
+    // TODO 一级缓存默认开启
     if (cacheEnabled) {
       executor = new CachingExecutor(executor);
     }
@@ -951,7 +952,7 @@ public class Configuration {
     }
   }
 
-  // Slow but a one time cost. A better solution is welcome.
+  //速度很慢，但是要花一倍的时间。欢迎有更好的解决方案.
   protected void checkLocallyForDiscriminatedNestedResultMaps(ResultMap rm) {
     if (!rm.hasNestedResultMaps() && rm.getDiscriminator() != null) {
       for (Map.Entry<String, String> entry : rm.getDiscriminator().getDiscriminatorMap().entrySet()) {
